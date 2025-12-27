@@ -12,101 +12,80 @@
         }
         
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            color: #333;
-            padding: 30px 15px;
+            font-family: 'Garamond', 'Georgia', serif;
+            background: #ffffff;
+            color: #2c2c2c;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 10px 40px rgba(0,74,5,0.15);
-            border-radius: 15px;
-            overflow: hidden;
         }
         
         header {
-            background: linear-gradient(135deg, #004A05 0%, #006908 100%);
-            padding: 40px 30px;
+            background: linear-gradient(135deg, #004A05 0%, #005a07 100%);
+            padding: 50px 40px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            border-bottom: 5px solid #003304;
         }
         
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 50px,
-                rgba(255,255,255,0.03) 50px,
-                rgba(255,255,255,0.03) 100px
-            );
-            animation: shimmer 20s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .logo-text {
+        .brand {
             color: white;
-            font-size: 48px;
-            font-weight: bold;
+        }
+        
+        .brand-title {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .brand-subtitle {
+            font-size: 20px;
             letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
+            font-weight: 300;
+            opacity: 0.95;
+            font-style: italic;
         }
         
-        .logo-subtitle {
-            color: rgba(255,255,255,0.9);
-            font-size: 18px;
-            margin-top: 10px;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .week-title {
-            background: white;
-            color: #004A05;
-            padding: 20px;
-            font-size: 22px;
-            font-weight: bold;
+        .week-banner {
+            background: #f8f8f8;
+            padding: 25px 40px;
             text-align: center;
-            border-bottom: 3px solid #004A05;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .week-text {
+            color: #004A05;
+            font-size: 20px;
+            font-weight: 600;
             letter-spacing: 1px;
         }
         
         .section {
-            padding: 40px 30px;
-            background: repeating-linear-gradient(
-                0deg,
-                white 0px,
-                white 140px,
-                #f8fff9 140px,
-                #f8fff9 280px
-            );
+            padding: 50px 40px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
         
         .section-title {
-            font-size: 32px;
-            font-weight: bold;
+            font-size: 36px;
             color: #004A05;
-            text-align: center;
-            margin-bottom: 35px;
+            font-weight: 400;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 2px;
             position: relative;
+            display: inline-block;
             padding-bottom: 15px;
         }
         
@@ -116,62 +95,68 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
+            width: 80px;
+            height: 2px;
             background: #004A05;
         }
         
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+        .menu-list {
+            max-width: 750px;
+            margin: 0 auto;
         }
         
-        .menu-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,74,5,0.1);
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
         
-        .menu-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,74,5,0.25);
-            border-color: #004A05;
+        .menu-item:hover {
+            background: #fafffe;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
+            border-radius: 8px;
         }
         
-        .card-image {
-            width: 100%;
-            height: 180px;
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
             object-fit: cover;
-            border-bottom: 3px solid #004A05;
+            border-radius: 6px;
+            margin-right: 25px;
+            border: 2px solid #004A05;
+            flex-shrink: 0;
         }
         
-        .card-content {
-            padding: 20px;
-            background: linear-gradient(to bottom, white 0%, #fafff9 100%);
-        }
-        
-        .card-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #004A05;
-            margin-bottom: 10px;
-            min-height: 50px;
+        .item-info {
+            flex: 1;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .card-price {
+        .item-name {
+            font-size: 22px;
+            color: #2c2c2c;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .item-price {
             font-size: 24px;
-            font-weight: bold;
             color: #004A05;
-            text-align: right;
-            padding-top: 10px;
-            border-top: 2px solid #e0e0e0;
+            font-weight: 700;
+            margin-left: 30px;
+            flex-shrink: 0;
         }
         
         .modal {
@@ -181,7 +166,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             overflow-y: auto;
             animation: fadeIn 0.3s ease;
@@ -194,18 +179,18 @@
         
         .modal-content {
             background: white;
-            max-width: 750px;
-            margin: 50px auto;
-            border-radius: 15px;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             animation: slideUp 0.4s ease;
         }
         
         @keyframes slideUp {
             from {
-                transform: translateY(50px);
+                transform: translateY(60px);
                 opacity: 0;
             }
             to {
@@ -214,34 +199,25 @@
             }
         }
         
-        .modal-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .modal-body {
-            padding: 35px;
-        }
-        
         .close-btn {
             position: absolute;
-            top: 20px;
+            top: 25px;
             right: 25px;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 36px;
+            font-weight: 300;
             color: white;
             cursor: pointer;
             border: none;
-            background: rgba(0,0,0,0.5);
-            width: 50px;
-            height: 50px;
+            background: rgba(0,0,0,0.6);
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10;
             transition: all 0.3s ease;
+            line-height: 1;
         }
         
         .close-btn:hover {
@@ -249,74 +225,118 @@
             transform: rotate(90deg);
         }
         
+        .modal-image-container {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-body {
+            padding: 45px 50px 50px;
+        }
+        
         .modal-title {
             color: #004A05;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 25px;
+            font-size: 38px;
+            font-weight: 500;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
         }
         
         .modal-section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .modal-section h3 {
             color: #004A05;
             font-size: 22px;
-            margin-bottom: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
         .modal-section p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #555;
-        }
-        
-        .allergenes {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #ffc107;
-        }
-        
-        .allergenes strong {
-            color: #856404;
             font-size: 19px;
+            line-height: 1.8;
+            color: #444;
+            letter-spacing: 0.3px;
+        }
+        
+        .allergenes-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            margin-top: 10px;
+        }
+        
+        .allergenes-box strong {
+            color: #e65100;
+            font-size: 20px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .allergenes-box p {
+            color: #5d4037;
+            margin: 0;
+        }
+        
+        footer {
+            background: #004A05;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo-text">JEANINE</div>
-            <div class="logo-subtitle">La Cuisine de</div>
+            <div class="brand">
+                <div class="brand-title">JEANINE</div>
+                <div class="brand-subtitle">La Cuisine de</div>
+            </div>
         </header>
         
         <!-- ⬇️ MODIFIER ICI LA DATE DE LA SEMAINE ⬇️ -->
-        <div class="week-title">Menu de la semaine du 30 Décembre au 5 Janvier</div>
+        <div class="week-banner">
+            <div class="week-text">Menu de la semaine du 30 Décembre au 5 Janvier</div>
+        </div>
 
         <!-- ========================================= -->
         <!-- ENTRÉES - MODIFIER ICI -->
         <!-- ========================================= -->
         <div class="section">
-            <div class="section-title">🥗 Entrées</div>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="openModal('entree1')">
-                    <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=500" alt="Salade César" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Salade César</div>
-                        <div class="card-price">6,50€</div>
+            <div class="section-header">
+                <h2 class="section-title">Entrées</h2>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="openModal('entree1')">
+                    <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300" alt="Salade César" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Salade César</span>
+                        <span class="item-price">6,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('entree2')">
-                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500" alt="Velouté de légumes" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Velouté de légumes</div>
-                        <div class="card-price">5,50€</div>
+                <div class="menu-item" onclick="openModal('entree2')">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300" alt="Velouté de légumes" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Velouté de légumes</span>
+                        <span class="item-price">5,50€</span>
                     </div>
                 </div>
             </div>
@@ -326,45 +346,47 @@
         <!-- PLATS - MODIFIER ICI -->
         <!-- ========================================= -->
         <div class="section">
-            <div class="section-title">🍽️ Plats</div>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="openModal('plat1')">
-                    <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500" alt="Poulet rôti" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Poulet rôti aux herbes</div>
-                        <div class="card-price">12,50€</div>
+            <div class="section-header">
+                <h2 class="section-title">Plats</h2>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="openModal('plat1')">
+                    <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=300" alt="Poulet rôti" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Poulet rôti aux herbes</span>
+                        <span class="item-price">12,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plat2')">
-                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500" alt="Saumon grillé" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Saumon grillé sauce citron</div>
-                        <div class="card-price">14,90€</div>
+                <div class="menu-item" onclick="openModal('plat2')">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300" alt="Saumon grillé" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Saumon grillé sauce citron</span>
+                        <span class="item-price">14,90€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plat3')">
-                    <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=500" alt="Lasagnes" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Lasagnes bolognaise</div>
-                        <div class="card-price">11,50€</div>
+                <div class="menu-item" onclick="openModal('plat3')">
+                    <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=300" alt="Lasagnes" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Lasagnes bolognaise</span>
+                        <span class="item-price">11,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plat4')">
-                    <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=500" alt="Curry végétarien" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Curry de légumes végétarien</div>
-                        <div class="card-price">10,50€</div>
+                <div class="menu-item" onclick="openModal('plat4')">
+                    <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300" alt="Curry végétarien" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Curry de légumes végétarien</span>
+                        <span class="item-price">10,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plat5')">
-                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=500" alt="Bœuf bourguignon" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Bœuf bourguignon</div>
-                        <div class="card-price">13,90€</div>
+                <div class="menu-item" onclick="openModal('plat5')">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=300" alt="Bœuf bourguignon" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Bœuf bourguignon</span>
+                        <span class="item-price">13,90€</span>
                     </div>
                 </div>
             </div>
@@ -374,21 +396,23 @@
         <!-- DESSERTS - MODIFIER ICI -->
         <!-- ========================================= -->
         <div class="section">
-            <div class="section-title">🍰 Desserts</div>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="openModal('dessert1')">
-                    <img src="https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=500" alt="Tarte aux pommes" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Tarte aux pommes maison</div>
-                        <div class="card-price">4,50€</div>
+            <div class="section-header">
+                <h2 class="section-title">Desserts</h2>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="openModal('dessert1')">
+                    <img src="https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=300" alt="Tarte aux pommes" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Tarte aux pommes maison</span>
+                        <span class="item-price">4,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('dessert2')">
-                    <img src="https://images.unsplash.com/photo-1541599468348-e96984315921?w=500" alt="Mousse au chocolat" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Mousse au chocolat</div>
-                        <div class="card-price">4,00€</div>
+                <div class="menu-item" onclick="openModal('dessert2')">
+                    <img src="https://images.unsplash.com/photo-1541599468348-e96984315921?w=300" alt="Mousse au chocolat" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Mousse au chocolat</span>
+                        <span class="item-price">4,00€</span>
                     </div>
                 </div>
             </div>
@@ -398,39 +422,45 @@
         <!-- PETITS + - MODIFIER ICI -->
         <!-- ========================================= -->
         <div class="section">
-            <div class="section-title">➕ Les Petits +</div>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="openModal('plus1')">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500" alt="Pain artisanal" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Pain artisanal</div>
-                        <div class="card-price">1,50€</div>
+            <div class="section-header">
+                <h2 class="section-title">Les Petits +</h2>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="openModal('plus1')">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" alt="Pain artisanal" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Pain artisanal</span>
+                        <span class="item-price">1,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plus2')">
-                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500" alt="Donuts maison" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Donuts maison</div>
-                        <div class="card-price">2,50€</div>
+                <div class="menu-item" onclick="openModal('plus2')">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300" alt="Donuts maison" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Donuts maison</span>
+                        <span class="item-price">2,50€</span>
                     </div>
                 </div>
                 
-                <div class="menu-card" onclick="openModal('plus3')">
-                    <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=500" alt="Boisson fraîche" class="card-image">
-                    <div class="card-content">
-                        <div class="card-name">Boisson fraîche</div>
-                        <div class="card-price">2,00€</div>
+                <div class="menu-item" onclick="openModal('plus3')">
+                    <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=300" alt="Boisson fraîche" class="item-image">
+                    <div class="item-info">
+                        <span class="item-name">Boisson fraîche</span>
+                        <span class="item-price">2,00€</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <footer>
+            La Cuisine de Jeanine - Traiteur de qualité
+        </footer>
     </div>
 
     <!-- MODAL POPUP -->
     <div id="modal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <button class="close-btn" onclick="closeModal()">×</button>
             <div id="modal-body"></div>
         </div>
     </div>
@@ -529,7 +559,9 @@
             const modalBody = document.getElementById('modal-body');
             
             modalBody.innerHTML = `
-                <img src="${fiche.image}" alt="${fiche.nom}" class="modal-image">
+                <div class="modal-image-container">
+                    <img src="${fiche.image}" alt="${fiche.nom}" class="modal-image">
+                </div>
                 <div class="modal-body">
                     <h2 class="modal-title">${fiche.nom}</h2>
                     
@@ -538,9 +570,12 @@
                         <p>${fiche.ingredients}</p>
                     </div>
                     
-                    <div class="modal-section allergenes">
+                    <div class="modal-section">
                         <h3>⚠️ Allergènes</h3>
-                        <p><strong>${fiche.allergenes}</strong></p>
+                        <div class="allergenes-box">
+                            <strong>Attention :</strong>
+                            <p>${fiche.allergenes}</p>
+                        </div>
                     </div>
                 </div>
             `;
