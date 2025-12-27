@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cuisine de Jeanine - Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #004A05;
+        }
+        
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        .week-title {
+            color: #004A05;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            background: #004A05;
+            color: white;
+            padding: 12px 20px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .menu-item {
+            background: #f8f8f8;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #004A05;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-item:hover {
+            background: #e8f5e9;
+            transform: translateX(5px);
+        }
+        
+        .item-name {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .item-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #004A05;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 35px;
+            font-weight: bold;
+            color: #004A05;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal-title {
+            color: #004A05;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-right: 40px;
+        }
+        
+        .modal-section {
+            margin-bottom: 20px;
+        }
+        
+        .modal-section h3 {
+            color: #004A05;
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #004A05;
+            padding-bottom: 5px;
+        }
+        
+        .modal-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .allergenes {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .allergenes strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <svg class="logo" viewBox="0 0 975 1129" xmlns="http://www.w3.org/2000/svg">
+                <rect width="975" height="975" fill="#004A05"/>
+                <path d="M391.5,177.8c125.8,0,227.9,102,227.9,227.9c0,63.4-25.9,120.7-67.7,162L391.5,727.9L231.2,567.7 c-41.8-41.3-67.7-98.6-67.7-162C163.5,279.9,265.6,177.8,391.5,177.8z" fill="white"/>
+                <text x="0" y="1050" font-family="Arial, sans-serif" font-size="140" font-weight="bold" fill="#004A05">LA CUISINE DE</text>
+                <text x="0" y="1250" font-family="Arial, sans-serif" font-size="180" font-weight="bold" fill="#004A05">JEANINE</text>
+            </svg>
+            
+            <!-- ⬇️ MODIFIER ICI LA DATE DE LA SEMAINE ⬇️ -->
+            <div class="week-title">Menu de la semaine du 30 Décembre au 5 Janvier</div>
+        </header>
+
+        <!-- ========================================= -->
+        <!-- ENTRÉES - MODIFIER ICI -->
+        <!-- ========================================= -->
+        <div class="section">
+            <div class="section-title">🥗 Entrées</div>
+            
+            <div class="menu-item" onclick="openModal('entree1')">
+                <span class="item-name">Salade César</span>
+                <span class="item-price">6,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('entree2')">
+                <span class="item-name">Velouté de légumes</span>
+                <span class="item-price">5,50€</span>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- PLATS - MODIFIER ICI -->
+        <!-- ========================================= -->
+        <div class="section">
+            <div class="section-title">🍽️ Plats</div>
+            
+            <div class="menu-item" onclick="openModal('plat1')">
+                <span class="item-name">Poulet rôti aux herbes</span>
+                <span class="item-price">12,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plat2')">
+                <span class="item-name">Saumon grillé sauce citron</span>
+                <span class="item-price">14,90€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plat3')">
+                <span class="item-name">Lasagnes bolognaise</span>
+                <span class="item-price">11,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plat4')">
+                <span class="item-name">Curry de légumes végétarien</span>
+                <span class="item-price">10,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plat5')">
+                <span class="item-name">Bœuf bourguignon</span>
+                <span class="item-price">13,90€</span>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- DESSERTS - MODIFIER ICI -->
+        <!-- ========================================= -->
+        <div class="section">
+            <div class="section-title">🍰 Desserts</div>
+            
+            <div class="menu-item" onclick="openModal('dessert1')">
+                <span class="item-name">Tarte aux pommes maison</span>
+                <span class="item-price">4,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('dessert2')">
+                <span class="item-name">Mousse au chocolat</span>
+                <span class="item-price">4,00€</span>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- PETITS + - MODIFIER ICI -->
+        <!-- ========================================= -->
+        <div class="section">
+            <div class="section-title">➕ Les Petits +</div>
+            
+            <div class="menu-item" onclick="openModal('plus1')">
+                <span class="item-name">Pain artisanal</span>
+                <span class="item-price">1,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plus2')">
+                <span class="item-name">Donuts maison</span>
+                <span class="item-price">2,50€</span>
+            </div>
+            
+            <div class="menu-item" onclick="openModal('plus3')">
+                <span class="item-name">Boisson fraîche</span>
+                <span class="item-price">2,00€</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // FICHES TECHNIQUES - MODIFIER ICI
+        // ========================================
+        
+        const fiches = {
+            // ENTRÉES
+            entree1: {
+                nom: "Salade César",
+                ingredients: "Laitue romaine, poulet grillé, parmesan, croûtons, sauce césar maison (huile d'olive, ail, anchois, citron, moutarde)",
+                allergenes: "Gluten, Poisson, Œuf, Lait, Moutarde"
+            },
+            entree2: {
+                nom: "Velouté de légumes",
+                ingredients: "Carottes, pommes de terre, poireaux, oignons, bouillon de légumes, crème fraîche, persil",
+                allergenes: "Lait, Céleri"
+            },
+            
+            // PLATS
+            plat1: {
+                nom: "Poulet rôti aux herbes",
+                ingredients: "Poulet fermier, thym, romarin, ail, huile d'olive, pommes de terre grenaille, haricots verts",
+                allergenes: "Aucun"
+            },
+            plat2: {
+                nom: "Saumon grillé sauce citron",
+                ingredients: "Filet de saumon frais, citron, beurre, aneth, riz basmati, légumes de saison",
+                allergenes: "Poisson, Lait"
+            },
+            plat3: {
+                nom: "Lasagnes bolognaise",
+                ingredients: "Bœuf haché, tomates, pâtes à lasagnes, béchamel (lait, beurre, farine), parmesan, oignons, ail",
+                allergenes: "Gluten, Lait, Céleri"
+            },
+            plat4: {
+                nom: "Curry de légumes végétarien",
+                ingredients: "Pois chiches, patates douces, épinards, lait de coco, curry, curcuma, gingembre, riz basmati",
+                allergenes: "Aucun"
+            },
+            plat5: {
+                nom: "Bœuf bourguignon",
+                ingredients: "Bœuf à braiser, vin rouge, carottes, champignons, lardons, oignons, bouquet garni, pommes de terre",
+                allergenes: "Sulfites (vin)"
+            },
+            
+            // DESSERTS
+            dessert1: {
+                nom: "Tarte aux pommes maison",
+                ingredients: "Pommes golden, pâte brisée (farine, beurre, sucre, œuf), sucre, cannelle",
+                allergenes: "Gluten, Œuf, Lait"
+            },
+            dessert2: {
+                nom: "Mousse au chocolat",
+                ingredients: "Chocolat noir 70%, œufs, sucre, crème fraîche",
+                allergenes: "Œuf, Lait"
+            },
+            
+            // PETITS +
+            plus1: {
+                nom: "Pain artisanal",
+                ingredients: "Farine de blé, eau, levure, sel",
+                allergenes: "Gluten"
+            },
+            plus2: {
+                nom: "Donuts maison",
+                ingredients: "Farine, sucre, œufs, beurre, lait, levure, glaçage au sucre",
+                allergenes: "Gluten, Œuf, Lait"
+            },
+            plus3: {
+                nom: "Boisson fraîche",
+                ingredients: "Eau, sirop de fruits (selon choix), glaçons",
+                allergenes: "Aucun"
+            }
+        };
+
+        function openModal(id) {
+            const fiche = fiches[id];
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            modalBody.innerHTML = `
+                <h2 class="modal-title">${fiche.nom}</h2>
+                
+                <div class="modal-section">
+                    <h3>📋 Ingrédients</h3>
+                    <p>${fiche.ingredients}</p>
+                </div>
+                
+                <div class="modal-section allergenes">
+                    <h3>⚠️ Allergènes</h3>
+                    <p><strong>${fiche.allergenes}</strong></p>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal(event) {
+            const modal = document.getElementById('modal');
+            if (!event || event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
