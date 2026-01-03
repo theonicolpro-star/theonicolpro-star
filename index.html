@@ -4,730 +4,310 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Cuisine de Jeanine - Menu</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@400;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Oswald', sans-serif;
             background: #004A05;
             color: white;
-            position: relative;
             overflow-x: hidden;
         }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(0,0,0,0.03) 10px,
-                    rgba(0,0,0,0.03) 20px
-                ),
-                radial-gradient(circle at 20% 50%, rgba(0,90,10,0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0,60,8,0.3) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        header {
-            padding: 50px 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
+
+        .container { max-width: 900px; margin: auto; }
+
+        header { padding: 50px 40px; text-align: center; }
+
         .logo-image {
             max-width: 600px;
             width: 100%;
-            height: auto;
             filter: brightness(0) invert(1);
-            drop-shadow: 3px 3px 8px rgba(0,0,0,0.4);
         }
-        
+
         .week-banner {
             background: rgba(0,0,0,0.3);
-            padding: 20px 40px;
+            padding: 20px;
             text-align: center;
             border-top: 3px solid white;
             border-bottom: 3px solid white;
-            position: relative;
-            margin-bottom: 10px;
         }
-        
+
         .week-text {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 26px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: white;
         }
-        
-        .section {
-            padding: 50px 30px;
-            position: relative;
-        }
-        
-        .section-header {
-            margin-bottom: 35px;
-            position: relative;
-        }
-        
+
+        .section { padding: 50px 30px; }
+
         .section-title {
             font-family: 'Anton', sans-serif;
-            font-size: 55px;
-            color: white;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            text-align: left;
-            padding-left: 20px;
+            font-size: 50px;
             border-left: 8px solid white;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
-            line-height: 1;
+            padding-left: 20px;
+            margin-bottom: 30px;
         }
-        
-        .menu-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
+
+        .menu-list { display: flex; flex-direction: column; gap: 15px; }
+
         .menu-item {
-            background: rgba(255,255,255,0.95);
-            padding: 15px 20px;
+            background: white;
+            color: black;
+            padding: 15px;
             display: flex;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
             border-left: 6px solid #004A05;
-            position: relative;
-            overflow: hidden;
+            transition: 0.3s;
         }
-        
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(0,74,5,0.1);
-            transition: width 0.3s ease;
-            z-index: 0;
-        }
-        
-        .menu-item:hover::before {
-            width: 100%;
-        }
-        
+
         .menu-item:hover {
-            transform: translateX(10px);
-            box-shadow: -5px 5px 20px rgba(0,0,0,0.3);
+            transform: translateX(8px);
+            box-shadow: -5px 5px 15px rgba(0,0,0,0.3);
         }
-        
+
         .item-image {
             width: 90px;
             height: 90px;
             object-fit: cover;
+            margin-right: 20px;
             border: 4px solid #004A05;
-            margin-right: 25px;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
         }
-        
+
         .item-info {
-            flex: 1;
             display: flex;
             justify-content: space-between;
+            width: 100%;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
-        
+
         .item-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: 26px;
-            color: #1a1a1a;
+            font-size: 24px;
             font-weight: 600;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            flex: 1;
-            min-width: 0;
         }
-        
+
         .item-price {
             font-family: 'Anton', sans-serif;
-            font-size: 32px;
+            font-size: 30px;
             color: #004A05;
-            margin-left: 20px;
-            flex-shrink: 0;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            white-space: nowrap;
         }
-        
-        /* Responsive pour petits écrans */
-        @media (max-width: 768px) {
-            .logo-image {
-                max-width: 90%;
-            }
-            
-            .section {
-                padding: 40px 20px;
-            }
-            
-            .section-title {
-                font-size: 45px;
-                letter-spacing: 3px;
-            }
-            
-            .menu-item {
-                padding: 12px 15px;
-            }
-            
-            .item-image {
-                width: 70px;
-                height: 70px;
-                margin-right: 15px;
-            }
-            
-            .item-name {
-                font-size: 20px;
-                letter-spacing: 0.5px;
-            }
-            
-            .item-price {
-                font-size: 26px;
-                margin-left: 15px;
-            }
-            
-            .week-banner {
-                padding: 15px 20px;
-            }
-            
-            .week-text {
-                font-size: 20px;
-                letter-spacing: 2px;
-            }
-            
-            .modal-body {
-                padding: 30px 25px 35px;
-            }
-            
-            .modal-title {
-                font-size: 42px;
-            }
-            
-            .modal-section h3 {
-                font-size: 26px;
-            }
-            
-            .modal-section p {
-                font-size: 18px;
-            }
+
+        footer {
+            background: rgba(0,0,0,0.4);
+            text-align: center;
+            padding: 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
         }
-        
-        @media (max-width: 480px) {
-            .brand-title {
-                font-size: 70px;
-                letter-spacing: 8px;
-            }
-            
-            .section-title {
-                font-size: 38px;
-            }
-            
-            .item-image {
-                width: 60px;
-                height: 60px;
-                margin-right: 12px;
-            }
-            
-            .item-name {
-                font-size: 18px;
-            }
-            
-            .item-price {
-                font-size: 24px;
-                margin-left: 10px;
-            }
-            
-            .week-text {
-                font-size: 18px;
-            }
-        }
-        
+
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 1000;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 999;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
+
         .modal-content {
-            background: linear-gradient(135deg, #003a04 0%, #004A05 50%, #005a07 100%);
             max-width: 850px;
             margin: 40px auto;
+            background: linear-gradient(135deg,#003a04,#005a07);
+            color: white;
             position: relative;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.7);
-            animation: slideUp 0.4s ease;
-            border: 3px solid rgba(255,255,255,0.2);
         }
-        
-        @keyframes slideUp {
-            from {
-                transform: translateY(60px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
+
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 50px;
-            font-weight: bold;
+            top: 15px;
+            right: 15px;
+            font-size: 40px;
+            background: black;
             color: white;
-            cursor: pointer;
             border: none;
-            background: rgba(0,0,0,0.6);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.3s ease;
-            line-height: 1;
-            font-family: Arial;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
         }
-        
-        .close-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: rotate(90deg);
-        }
-        
-        .modal-image-container {
-            width: 100%;
-            height: 380px;
-            overflow: hidden;
-            position: relative;
-            border-bottom: 5px solid white;
-        }
-        
-        .modal-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .modal-body {
-            padding: 45px 50px 50px;
-            color: white;
-        }
-        
+
+        .modal-image { width: 100%; height: 350px; object-fit: cover; }
+
+        .modal-body { padding: 40px; }
+
         .modal-title {
             font-family: 'Anton', sans-serif;
-            color: white;
-            font-size: 52px;
-            margin-bottom: 35px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.4);
+            font-size: 48px;
+            margin-bottom: 25px;
             border-bottom: 3px solid white;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
-        
-        .modal-section {
-            margin-bottom: 30px;
-        }
-        
-        .modal-section h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            color: white;
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .modal-section p {
-            font-family: 'Oswald', sans-serif;
-            font-size: 20px;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.95);
-            letter-spacing: 0.5px;
-            font-weight: 300;
-        }
-        
+
         .allergenes-box {
-            background: rgba(255,193,7,0.95);
-            padding: 25px;
-            border-left: 6px solid #ff6f00;
-            margin-top: 10px;
-            box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
-        }
-        
-        .allergenes-box strong {
-            font-family: 'Bebas Neue', sans-serif;
-            color: #5d4037;
-            font-size: 26px;
-            display: block;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-        
-        .allergenes-box p {
+            background: #ffc107;
             color: #3e2723;
-            margin: 0;
-            font-weight: 500;
-        }
-        
-        footer {
-            background: rgba(0,0,0,0.4);
-            color: white;
-            text-align: center;
-            padding: 35px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 22px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            border-top: 3px solid white;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 6px solid #ff6f00;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300'%3E%3Ctext x='50%25' y='30%25' font-family='Arial Black, sans-serif' font-size='80' font-weight='900' text-anchor='middle' letter-spacing='15' fill='black'%3ELA CUISINE DE%3C/text%3E%3Ctext x='50%25' y='85%25' font-family='Bodoni, serif' font-size='180' font-weight='bold' text-anchor='middle' letter-spacing='20' fill='black'%3EJEANINE%3C/text%3E%3C/svg%3E" alt="La Cuisine de Jeanine" class="logo-image">
-            </div>
-        </header>
-        
-        <!-- ⬇️ MODIFIER ICI LA DATE DE LA SEMAINE ⬇️ -->
-        <div class="week-banner">
-            <div class="week-text">Menu de la semaine du 30 Décembre au 5 Janvier</div>
-        </div>
+<div class="container">
 
-        <!-- ========================================= -->
-        <!-- ENTRÉES - MODIFIER ICI -->
-        <!-- ========================================= -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">ENTRÉES</h2>
-            </div>
-            <div class="menu-list">
-                <div class="menu-item" onclick="openModal('entree1')">
-                    <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300" alt="Salade César" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Salade César</span>
-                        <span class="item-price">6,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('entree2')">
-                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300" alt="Velouté de légumes" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Velouté de légumes</span>
-                        <span class="item-price">5,50€</span>
-                    </div>
-                </div>
+<header>
+    <img class="logo-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 300'%3E%3Ctext x='50%25' y='30%25' font-family='Arial Black' font-size='80' text-anchor='middle' letter-spacing='15'%3ELA CUISINE DE%3C/text%3E%3Ctext x='50%25' y='85%25' font-size='180' font-family='Bodoni' text-anchor='middle' letter-spacing='20'%3EJEANINE%3C/text%3E%3C/svg%3E">
+</header>
+
+<div class="week-banner">
+    <div class="week-text">Menu de la semaine du 05 au 11 Janvier</div>
+</div>
+
+<!-- ENTRÉES -->
+<div class="section">
+    <h2 class="section-title">ENTRÉES</h2>
+    <div class="menu-list">
+        <div class="menu-item" onclick="openModal('entree1')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=300">
+            <div class="item-info">
+                <span class="item-name">Quiche saumon poireaux</span>
+                <span class="item-price">4,30€</span>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- PLATS - MODIFIER ICI -->
-        <!-- ========================================= -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">PLATS</h2>
+        <div class="menu-item" onclick="openModal('entree2')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1604908177522-429a1a6e5f5b?w=300">
+            <div class="item-info">
+                <span class="item-name">Champignons à la grecque</span>
+                <span class="item-price">3,30€</span>
             </div>
-            <div class="menu-list">
-                <div class="menu-item" onclick="openModal('plat1')">
-                    <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=300" alt="Poulet rôti" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Poulet rôti aux herbes</span>
-                        <span class="item-price">12,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plat2')">
-                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300" alt="Saumon grillé" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Saumon grillé sauce citron</span>
-                        <span class="item-price">14,90€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plat3')">
-                    <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=300" alt="Lasagnes" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Lasagnes bolognaise</span>
-                        <span class="item-price">11,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plat4')">
-                    <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300" alt="Curry végétarien" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Curry de légumes végétarien</span>
-                        <span class="item-price">10,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plat5')">
-                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=300" alt="Bœuf bourguignon" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Bœuf bourguignon</span>
-                        <span class="item-price">13,90€</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- DESSERTS - MODIFIER ICI -->
-        <!-- ========================================= -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">DESSERTS</h2>
-            </div>
-            <div class="menu-list">
-                <div class="menu-item" onclick="openModal('dessert1')">
-                    <img src="https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=300" alt="Tarte aux pommes" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Tarte aux pommes maison</span>
-                        <span class="item-price">4,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('dessert2')">
-                    <img src="https://images.unsplash.com/photo-1541599468348-e96984315921?w=300" alt="Mousse au chocolat" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Mousse au chocolat</span>
-                        <span class="item-price">4,00€</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================= -->
-        <!-- PETITS + - MODIFIER ICI -->
-        <!-- ========================================= -->
-        <div class="section">
-            <div class="section-header">
-                <h2 class="section-title">SNACKING</h2>
-            </div>
-            <div class="menu-list">
-                <div class="menu-item" onclick="openModal('plus1')">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" alt="Pain artisanal" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Pain artisanal</span>
-                        <span class="item-price">1,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plus2')">
-                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300" alt="Donuts maison" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Donuts maison</span>
-                        <span class="item-price">2,50€</span>
-                    </div>
-                </div>
-                
-                <div class="menu-item" onclick="openModal('plus3')">
-                    <img src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=300" alt="Boisson fraîche" class="item-image">
-                    <div class="item-info">
-                        <span class="item-name">Boisson fraîche</span>
-                        <span class="item-price">2,00€</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            Parce que bien manger, ça commence par bien choisir
-        </footer>
-    </div>
-
-    <!-- MODAL POPUP -->
-    <div id="modal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-btn" onclick="closeModal()">×</button>
-            <div id="modal-body"></div>
         </div>
     </div>
+</div>
 
-    <script>
-        // ========================================
-        // FICHES TECHNIQUES - MODIFIER ICI
-        // Pour changer les photos, remplace les URL après "image:"
-        // ========================================
-        
-        const fiches = {
-            // ENTRÉES
-            entree1: {
-                nom: "Salade César",
-                image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800",
-                ingredients: "Laitue romaine, poulet grillé, parmesan, croûtons, sauce césar maison (huile d'olive, ail, anchois, citron, moutarde)",
-                allergenes: "Gluten, Poisson, Œuf, Lait, Moutarde"
-            },
-            entree2: {
-                nom: "Velouté de légumes",
-                image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800",
-                ingredients: "Carottes, pommes de terre, poireaux, oignons, bouillon de légumes, crème fraîche, persil",
-                allergenes: "Lait, Céleri"
-            },
-            
-            // PLATS
-            plat1: {
-                nom: "Poulet rôti aux herbes",
-                image: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800",
-                ingredients: "Poulet fermier, thym, romarin, ail, huile d'olive, pommes de terre grenaille, haricots verts",
-                allergenes: "Aucun"
-            },
-            plat2: {
-                nom: "Saumon grillé sauce citron",
-                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800",
-                ingredients: "Filet de saumon frais, citron, beurre, aneth, riz basmati, légumes de saison",
-                allergenes: "Poisson, Lait"
-            },
-            plat3: {
-                nom: "Lasagnes bolognaise",
-                image: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800",
-                ingredients: "Bœuf haché, tomates, pâtes à lasagnes, béchamel (lait, beurre, farine), parmesan, oignons, ail",
-                allergenes: "Gluten, Lait, Céleri"
-            },
-            plat4: {
-                nom: "Curry de légumes végétarien",
-                image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800",
-                ingredients: "Pois chiches, patates douces, épinards, lait de coco, curry, curcuma, gingembre, riz basmati",
-                allergenes: "Aucun"
-            },
-            plat5: {
-                nom: "Bœuf bourguignon",
-                image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800",
-                ingredients: "Bœuf à braiser, vin rouge, carottes, champignons, lardons, oignons, bouquet garni, pommes de terre",
-                allergenes: "Sulfites (vin)"
-            },
-            
-            // DESSERTS
-            dessert1: {
-                nom: "Tarte aux pommes maison",
-                image: "https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=800",
-                ingredients: "Pommes golden, pâte brisée (farine, beurre, sucre, œuf), sucre, cannelle",
-                allergenes: "Gluten, Œuf, Lait"
-            },
-            dessert2: {
-                nom: "Mousse au chocolat",
-                image: "https://images.unsplash.com/photo-1541599468348-e96984315921?w=800",
-                ingredients: "Chocolat noir 70%, œufs, sucre, crème fraîche",
-                allergenes: "Œuf, Lait"
-            },
-            
-            // PETITS +
-            plus1: {
-                nom: "Pain artisanal",
-                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800",
-                ingredients: "Farine de blé, eau, levure, sel",
-                allergenes: "Gluten"
-            },
-            plus2: {
-                nom: "Donuts maison",
-                image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800",
-                ingredients: "Farine, sucre, œufs, beurre, lait, levure, glaçage au sucre",
-                allergenes: "Gluten, Œuf, Lait"
-            },
-            plus3: {
-                nom: "Boisson fraîche",
-                image: "https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=800",
-                ingredients: "Eau, sirop de fruits (selon choix), glaçons",
-                allergenes: "Aucun"
-            }
-        };
+<!-- PLATS -->
+<div class="section">
+    <h2 class="section-title">PLATS</h2>
+    <div class="menu-list">
+        <div class="menu-item" onclick="openModal('plat1')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1604908812474-b4e6f7a1e4e3?w=300">
+            <div class="item-info">
+                <span class="item-name">Noix de jambon miel & orange</span>
+                <span class="item-price">7,40€</span>
+            </div>
+        </div>
 
-        function openModal(id) {
-            const fiche = fiches[id];
-            const modal = document.getElementById('modal');
-            const modalBody = document.getElementById('modal-body');
-            
-            modalBody.innerHTML = `
-                <div class="modal-image-container">
-                    <img src="${fiche.image}" alt="${fiche.nom}" class="modal-image">
-                </div>
-                <div class="modal-body">
-                    <h2 class="modal-title">${fiche.nom}</h2>
-                    
-                    <div class="modal-section">
-                        <h3>📋 Ingrédients</h3>
-                        <p>${fiche.ingredients}</p>
-                    </div>
-                    
-                    <div class="modal-section">
-                        <h3>⚠️ Allergènes</h3>
-                        <div class="allergenes-box">
-                            <strong>Attention :</strong>
-                            <p>${fiche.allergenes}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+        <div class="menu-item" onclick="openModal('plat2')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300">
+            <div class="item-info">
+                <span class="item-name">Butter Chicken & riz sauvage</span>
+                <span class="item-price">7,10€</span>
+            </div>
+        </div>
 
-        function closeModal(event) {
-            const modal = document.getElementById('modal');
-            if (!event || event.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-    </script>
+        <div class="menu-item" onclick="openModal('plat3')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1608756687911-aa1599ab6b52?w=300">
+            <div class="item-info">
+                <span class="item-name">Lasagnes ricotta chèvre épinards</span>
+                <span class="item-price">7,40€</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SNACKING -->
+<div class="section">
+    <h2 class="section-title">SNACKING</h2>
+    <div class="menu-list">
+        <div class="menu-item" onclick="openModal('snack1')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1618213831029-6f7d1c7b89ae?w=300">
+            <div class="item-info">
+                <span class="item-name">Bun’s Mexican Crunchy</span>
+                <span class="item-price">6,00€</span>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openModal('snack2')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1604908554164-f4c4e7a7b1d0?w=300">
+            <div class="item-info">
+                <span class="item-name">Sandwich poulet curry</span>
+                <span class="item-price">6,00€</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DESSERTS -->
+<div class="section">
+    <h2 class="section-title">DESSERTS</h2>
+    <div class="menu-list">
+        <div class="menu-item" onclick="openModal('dessert1')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1600628422019-47b94c7b5b52?w=300">
+            <div class="item-info">
+                <span class="item-name">Galette des rois</span>
+                <span class="item-price">2,10€</span>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="openModal('dessert2')">
+            <img class="item-image" src="https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=300">
+            <div class="item-info">
+                <span class="item-name">Mousse chocolat & orange</span>
+                <span class="item-price">3,60€</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>Parce que bien manger, ça commence par bien choisir</footer>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<script>
+const fiches = {
+    entree1:{nom:"Quiche saumon poireaux",image:"https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800",ingredients:"Pâte brisée, saumon, poireaux, crème, œufs, lait, gruyère",allergenes:"Gluten, lait, œufs, sulfites"},
+    entree2:{nom:"Champignons à la grecque",image:"https://images.unsplash.com/photo-1604908177522-429a1a6e5f5b?w=800",ingredients:"Champignons, oignons, tomate, citron, vin blanc, herbes",allergenes:"Sulfites"},
+    plat1:{nom:"Noix de jambon miel & orange",image:"https://images.unsplash.com/photo-1604908812474-b4e6f7a1e4e3?w=800",ingredients:"Noix de jambon, miel, orange, potatoes, sauce béarnaise",allergenes:"Lait, œuf, moutarde"},
+    plat2:{nom:"Butter Chicken & riz sauvage",image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800",ingredients:"Poulet, yaourt, épices, tomates, beurre, riz sauvage",allergenes:"Fruits à coque, lait, sulfites"},
+    plat3:{nom:"Lasagnes ricotta chèvre épinards",image:"https://images.unsplash.com/photo-1608756687911-aa1599ab6b52?w=800",ingredients:"Lasagnes, ricotta, chèvre, épinards, béchamel, parmesan",allergenes:"Fruits à coque, gluten, lait, œuf"},
+    snack1:{nom:"Bun’s Mexican Crunchy",image:"https://images.unsplash.com/photo-1618213831029-6f7d1c7b89ae?w=800",ingredients:"Bun, poulet pané, cheddar, jalapeños, guacamole",allergenes:"Gluten, lait, sésame"},
+    snack2:{nom:"Sandwich poulet curry",image:"https://images.unsplash.com/photo-1604908554164-f4c4e7a7b1d0?w=800",ingredients:"Demi-baguette, poulet, crudités, sauce curry",allergenes:"Fruits à coque, gluten, moutarde, œufs, sulfites"},
+    dessert1:{nom:"Galette des rois",image:"https://images.unsplash.com/photo-1600628422019-47b94c7b5b52?w=800",ingredients:"Pâte feuilletée, frangipane",allergenes:"Fruits à coque, gluten, lait, œufs"},
+    dessert2:{nom:"Mousse chocolat & orange",image:"https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=800",ingredients:"Chocolat, œufs, crème, orange confite",allergenes:"Fruits à coque, gluten, lait, œufs"}
+};
+
+function openModal(id){
+    const f=fiches[id];
+    document.getElementById("modal-body").innerHTML=`
+        <img class="modal-image" src="${f.image}">
+        <div class="modal-body">
+            <h2 class="modal-title">${f.nom}</h2>
+            <p>${f.ingredients}</p>
+            <div class="allergenes-box"><strong>Allergènes :</strong><p>${f.allergenes}</p></div>
+        </div>`;
+    document.getElementById("modal").style.display="block";
+    document.body.style.overflow="hidden";
+}
+
+function closeModal(e){
+    if(!e||e.target.id==="modal"){
+        document.getElementById("modal").style.display="none";
+        document.body.style.overflow="auto";
+    }
+}
+</script>
+
 </body>
 </html>
